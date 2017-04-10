@@ -41,8 +41,18 @@ class MaxHeap(object):
             implement heapify down
             try if I can implement min and max heap tree using one class
         """
-        child_li = self._get
-        pass
+        child_lv = self._get_left_child(index)
+        child_rv = self._get_right_child(index)
+        value = self.storage[index]
+        if child_lv > child_rv and child_lv > value:
+            child_li = self._get_left_child_index(index)
+            self._swap(child_li, index)
+            self._heapify_down(child_li)
+        elif child_rv >= child_lv and child_rv > value:
+            child_ri = self._get_right_child_index(index)
+            self._swap(child_ri, index)
+            self._heapify_down(child_ri)
+
 
     def _get_left_child_index(self, index):
         return ((index + 1) * 2) - 1
